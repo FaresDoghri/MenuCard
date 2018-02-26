@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HeaderComponent } from './header/header.component';
+import { MenucardComponent } from './menucard/menucard.component';
 
 const appRoutes: Routes = [
 	{ path: '', redirectTo: '/', pathMatch: 'full' },
-	{ path: 'header', component: HeaderComponent },
+	{ path: 'menucard', component: MenucardComponent },
 ];
 
 @NgModule({

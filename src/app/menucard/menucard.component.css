@@ -1,0 +1,21 @@
+.card-header {
+    background: white;
+    border: none;
+}
+
+ .info-div-center {
+     text-align: center;
+ }
+
+.div-thumbnail {
+  border: .25rem white solid;
+  box-shadow: 0 0 1px grey;
+}
+
+.section {
+  margin: 3em;
+}
+
+.space-top{
+  padding-top: 10px;
+}

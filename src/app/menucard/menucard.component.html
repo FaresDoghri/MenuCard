@@ -1,0 +1,80 @@
+<div class="row">
+
+  <div class="col-10">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-sandwich-tab" data-toggle="tab" href="#nav-sandwich" role="tab" aria-controls="nav-sandwich" aria-selected="true">Sandwichs</a>
+        <a class="nav-item nav-link" id="nav-snacks-tab" data-toggle="tab" href="#nav-snacks" role="tab" aria-controls="nav-snacks" aria-selected="false">Snacks</a>
+        <a class="nav-item nav-link" id="nav-drinks-tab" data-toggle="tab" href="#nav-drinks" role="tab" aria-controls="nav-drinks" aria-selected="false">Boisons</a>
+      </div>
+    </nav>
+    <div class="tab-content section" id="nav-tabContent">
+
+      <div class="tab-pane fade show active" id="nav-sandwich" role="tabpanel" aria-labelledby="nav-sandwich-tab">
+        <div class="row">
+          <div class="col-4 space-top" *ngFor="let sandwich of sandwiches">
+            <div class="card">
+              <img class="card-img-top" src="{{sandwich.products.image}}" alt="image"/>
+              <div class="card-body">
+                <h4 class="card-title">{{ sandwich.products.name }}</h4>
+                <div class="card-text">{{ sandwich.products.price}} €</div>
+                <div class="justify-content-end float-right">
+                  <button class="btn btn-primary" (click)="addToCart(sandwich.products.name, sandwich.products.price)">Ajouter au panier</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="nav-snacks" role="tabpanel" aria-labelledby="nav-snacks-tab">
+        <div class="row">
+          <div class="col-4 space-top" *ngFor="let snack of snacks" >
+
+            <div class="card">
+              <img class="card-img-top" src="{{snack.products.image}}" alt="image"/>
+              <div class="card-body">
+                <h4 class="card-title">{{ snack.products.name }}</h4>
+                <div class="card-text">{{ snack.products.price}} €</div>
+                <div class="justify-content-end float-right">
+                  <button class="btn btn-primary" (click)="addToCart(snack.products.name, snack.products.price)">Ajouter au panier</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="nav-drinks" role="tabpanel" aria-labelledby="nav-drinks-tab">
+        <div class="row">
+          <div class="col-4 space-top" *ngFor="let drink of drinks" >
+
+            <div class="card">
+              <img class="card-img-top" src="{{drink.products.image}}" alt="image"/>
+              <div class="card-body">
+                <h4 class="card-title">{{ drink.products.name }}</h4>
+                <div class="card-text">{{ drink.products.price}} €</div>
+                <div class="justify-content-end float-right">
+                  <button class="btn btn-primary" (click)="addToCart(drink.products.name, drink.products.price)">Ajouter au panier</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col">
+    <div *ngFor="let cart of cart">
+      {{cart.name}}
+    </div>
+    <div>
+      {{toPay}} €
+    </div>
+  </div>
+
+</div>
