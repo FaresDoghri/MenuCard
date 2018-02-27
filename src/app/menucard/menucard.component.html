@@ -19,7 +19,7 @@
                 <h4 class="card-title">{{ sandwich.products.name }}</h4>
                 <div class="card-text">{{ sandwich.products.price}} €</div>
                 <div class="justify-content-end float-right">
-                  <button class="btn btn-primary" (click)="addToCart(sandwich.products.name, sandwich.products.price)">Ajouter au panier</button>
+                  <button class="btn btn-primary" (click)="addToCart(sandwich.products.name, sandwich.products.price, sandwich.products.id)">Ajouter au panier</button>
                 </div>
               </div>
             </div>
@@ -37,7 +37,7 @@
                 <h4 class="card-title">{{ snack.products.name }}</h4>
                 <div class="card-text">{{ snack.products.price}} €</div>
                 <div class="justify-content-end float-right">
-                  <button class="btn btn-primary" (click)="addToCart(snack.products.name, snack.products.price)">Ajouter au panier</button>
+                  <button class="btn btn-primary" (click)="addToCart(snack.products.name, snack.products.price, snack.products.id)">Ajouter au panier</button>
                 </div>
               </div>
             </div>
@@ -56,7 +56,7 @@
                 <h4 class="card-title">{{ drink.products.name }}</h4>
                 <div class="card-text">{{ drink.products.price}} €</div>
                 <div class="justify-content-end float-right">
-                  <button class="btn btn-primary" (click)="addToCart(drink.products.name, drink.products.price)">Ajouter au panier</button>
+                  <button class="btn btn-primary" (click)="addToCart(drink.products.name, drink.products.price, drink.products.id)">Ajouter au panier</button>
                 </div>
               </div>
             </div>
@@ -68,12 +68,21 @@
     </div>
   </div>
 
-  <div class="col">
-    <div *ngFor="let cart of cart">
-      {{cart.name}}
+  <div class="col" >
+    <div id="cart-container">
+      <div class="list-group">
+        <div class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let cart of cart; let i = index" [attr.data-index]="i">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{cart.name}}</h5>
+             <strong>{{cart.count}}</strong>
+          </div>
+          <p class="mb-1"><button type="button" name="button" class="btn btn-danger" (click)="counter_minus(cart, i)">-</button> <button type="button" name="button" class="btn btn-danger" (click)="counter_add(cart)">+</button></p>
+          <small>{{cart.price}} €</small>
+        </div>
+      </div>
     </div>
     <div>
-      {{toPay}} €
+      Montant à payer : {{toPay}} €
     </div>
   </div>
 

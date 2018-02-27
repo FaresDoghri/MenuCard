@@ -19,3 +19,9 @@
 .space-top{
   padding-top: 10px;
 }
+
+
+#cart-container {
+  height: 800px;
+  overflow-x: auto;
+}

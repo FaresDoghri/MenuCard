@@ -5,7 +5,7 @@ import { MenucardComponent } from './menucard/menucard.component';
 import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
-	{ path: '', redirectTo: '/home', pathMatch: 'full' },
+	{ path: '', redirectTo: '/menucard', pathMatch: 'full' },
 	{ path: 'menucard', component: MenucardComponent },
 	{ path: 'home', component: HomeComponent },
 ];

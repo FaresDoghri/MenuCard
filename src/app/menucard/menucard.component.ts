@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../Services/menu.service';
-import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
 	selector: 'menucard',
@@ -16,8 +15,7 @@ export class MenucardComponent implements OnInit {
 	private toPay: number = 0;
 
 	constructor(
-		private menuService: MenuService,
-		private sanitizer: DomSanitizer) {
+		private menuService: MenuService) {
 	}
 
 	ngOnInit() {
@@ -47,7 +45,6 @@ export class MenucardComponent implements OnInit {
 				}
 			});
 		}
-		console.log(this.drinks);
 	}
 
 	initSandwiches(data) {
@@ -65,7 +62,6 @@ export class MenucardComponent implements OnInit {
 				}
 			});
 		}
-		console.log(this.sandwiches);
 	}
 
 	initSnacks(data) {
@@ -83,20 +79,43 @@ export class MenucardComponent implements OnInit {
 				}
 			});
 		}
-		console.log(this.snacks);
 	}
 
-	addToCart(objectname, price) {
-		this.cart.push({
-			name: objectname,
-			price: price
-		});
-		this.toPay += price;
+	counter_add(cart) {
+		cart.count++;
+		this.toPay += cart.initprice;
+		cart.price = cart.initprice * cart.count;
 	}
 
-	getTrustedStyle(style: string | number): SafeStyle {
-
-		return this.sanitizer.bypassSecurityTrustStyle(style + "");
+	counter_minus(cart, index) {
+		cart.count--;
+		this.toPay -= cart.initprice;
+		if (cart.count == 0) {
+			this.cart.splice(index, 1)
+		}
+		else
+			cart.price = cart.initprice * cart.count;
 	}
 
+	addToCart(objectname, price: number, id) {
+		var exists;
+		for (var i in this.cart) {
+			if (this.cart[i].id == id)
+				exists = i;
+		}
+		if (!exists) {
+			this.cart.push({
+				name: objectname,
+				count: 1,
+				price: price,
+				initprice: price,
+				id: id
+			});
+			this.toPay += price;
+		} else {
+			this.cart[exists].count++;
+			this.toPay += this.cart[exists].initprice;
+			this.cart[exists].price = this.cart[exists].initprice * this.cart[exists].count;
+		}
+	}
 }
