@@ -7,13 +7,11 @@ import { AppComponent } from './app.component';
 import { MenucardComponent } from './menucard/menucard.component';
 
 import { MenuService } from './Services/menu.service';
-import { HomeComponent } from './home/home.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		MenucardComponent,
-		HomeComponent
 	],
 	imports: [
 		BrowserModule,
