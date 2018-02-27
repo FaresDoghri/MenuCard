@@ -30,6 +30,11 @@ export class MenucardComponent implements OnInit {
 			});
 	}
 
+	round(value, precision) {
+		var multiplier = Math.pow(10, precision || 0);
+		return Math.round(value * multiplier) / multiplier;
+	}
+
 	initDrinks(data) {
 		for (var i in data.products) {
 			this.drinks.push({
@@ -41,7 +46,7 @@ export class MenucardComponent implements OnInit {
 					id: data.products[i].id,
 					name: data.products[i].name,
 					image: data.products[i].image,
-					price: data.products[i].price
+					price: data.products[i].price + this.round((data.products[i].price / 100 * 10) * 10 / 10, 2)
 				}
 			});
 		}
